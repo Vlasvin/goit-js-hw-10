@@ -1,37 +1,37 @@
 import SlimSelect from 'slim-select';
 import axios from 'axios';
 
-const api_key =
-  'live_icm1GCVwjCYsiZDr2jieZaw0CYZp62lKBeAX40dJr4XgKQxo0FhDnwQaWbzMWYpI';
-
-// axios.defaults.headers.common['x-api-key'] =
+// const api_key =
 //   'live_icm1GCVwjCYsiZDr2jieZaw0CYZp62lKBeAX40dJr4XgKQxo0FhDnwQaWbzMWYpI';
+
+axios.defaults.headers.common['x-api-key'] =
+  'live_icm1GCVwjCYsiZDr2jieZaw0CYZp62lKBeAX40dJr4XgKQxo0FhDnwQaWbzMWYpI';
 function fetchBreeds() {
-  fetch('https://api.thecatapi.com/v1/breeds/', {
-    headers: {
-      'x-api-key': api_key,
-    },
-  }).then(response => {
-    console.log(response);
-    return response.json();
-  });
+  // fetch('https://api.thecatapi.com/v1/breeds/', {
+  //   headers: {
+  //     'x-api-key': api_key,
+  //   },
+  // }).then(response => {
+  //   console.log(response);
+  //   return response.json();
+  // });
   // .then(data => {
   //   console.log(data);
   // });
-  //   axios
-  //     .get('${BASE_URL}breeds/')
-  //     .then(response => {
-  //       console.log(response);
-  //       return response.data;
-  //     })
-  //     .then(function (data) {
-  //       //   console.log(data);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
+  axios
+    .get('${BASE_URL}breeds/')
+    .then(response => {
+      console.log(response);
+      return response.data;
+    })
+    .then(function (data) {
+      //   console.log(data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
-export { fetchBreeds };
+// export { fetchBreeds };
 
 //   let storedBreeds = [];
 

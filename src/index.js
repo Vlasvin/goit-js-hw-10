@@ -1,60 +1,61 @@
 import SlimSelect from 'slim-select';
 import axios from 'axios';
+import Notiflix from 'notiflix';
 import API from './cat-api';
 
 axios.defaults.headers.common['x-api-key'] =
   'live_icm1GCVwjCYsiZDr2jieZaw0CYZp62lKBeAX40dJr4XgKQxo0FhDnwQaWbzMWYpI';
-
-let breedSelect = document.querySelector('.breed-select');
-const catInfo = document.querySelector('.cat-info');
-
 const api_key =
   'live_icm1GCVwjCYsiZDr2jieZaw0CYZp62lKBeAX40dJr4XgKQxo0FhDnwQaWbzMWYpI';
 
+let breedSelect = document.querySelector('.breed-select');
+const catInfo = document.querySelector('.cat-info');
+const error = document.querySelector('.error');
+
+let selectData = [];
+
 const select = new SlimSelect({
   select: '.breed-select',
-  data: [{ text: 'Value 1' }, { text: 'Value 2' }, { text: 'Value 3' }],
-  breeds: [],
+  data: selectData,
 });
 let option = select.store.data;
-console.log(select.store.data[0].value);
-fetchBreeds();
-function fetchBreeds() {
-  fetch('https://api.thecatapi.com/v1/breeds/', {
-    headers: {
-      'x-api-key': api_key,
-    },
-  }).then(response => {
-    console.log(response.json);
+console.log(select);
 
-    return response.json().then(data => {
-      console.log(data);
-      option = option.concat(data);
-      // for (let i = 0; i < data.length; i + 1) {
-      //   //  = i.name;
-      //   console.log();
-      //   // option.value = breed.id;
-      // }
-      console.log(option);
-    });
+axios
+  .get('https://api.thecatapi.com/v1/breeds/')
+  .then(response => {
+    console.log(response);
+    return response.data;
+  })
+  .then(function (data) {
+    console.log(data);
+    selectData = data.map(item => ({
+      text: item.name,
+      value: item.id,
+    }));
+    console.log(selectData);
   });
-}
+// fetchBreeds();
+// function fetchBreeds() {
+//   fetch('https://api.thecatapi.com/v1/breeds/', {
+//     headers: {
+//       'x-api-key': api_key,
+//     },
+//   })
+//     .then(response => {
+//       return response.json();
+//     })
+//     .then(data => {
+//       selectData = data.map(item => ({
+//         text: item.name,
+//         value: item.id,
+//       }));
+//       console.log(data);
+//     });
+// }
 // .then(data => {
 //   console.log(data);
 // });
-//   axios
-//     .get('${BASE_URL}breeds/')
-//     .then(response => {
-//       console.log(response);
-//       return response.data;
-//     })
-//     .then(function (data) {
-//       //   console.log(data);
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-// }
 
 // API.fetchBreeds().then(createBreeds);
 // .catch(response=>{console.log(ERROR)})
