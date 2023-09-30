@@ -11,7 +11,10 @@ const api_key =
 let breedSelect = document.querySelector('.breed-select');
 const catInfo = document.querySelector('.cat-info');
 const error = document.querySelector('.error');
+const loader = document.querySelector('.loader');
 
+loader.textContent = '';
+loader.classList.add('hidden');
 let selectData = [];
 
 const select = new SlimSelect({
