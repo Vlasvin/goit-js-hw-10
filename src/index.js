@@ -96,7 +96,7 @@ function onError() {
   Notiflix.Notify.failure(
     'Oops! Something went wrong! Try reloading the page!',
     {
-      position: 'left-top',
+      position: 'center-center',
       timeout: 20000,
     }
   );

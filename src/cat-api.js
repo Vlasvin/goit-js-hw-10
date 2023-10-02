@@ -5,7 +5,7 @@ axios.defaults.headers.common['x-api-key'] =
   'live_icm1GCVwjCYsiZDr2jieZaw0CYZp62lKBeAX40dJr4XgKQxo0FhDnwQaWbzMWYpI';
 
 function fetchBreeds() {
-  return axios.get(`${BASE_URL}breeds`).then(response => {
+  return axios.get(`${BASE_URL}breed`).then(response => {
     return response.data;
   });
 }
