@@ -14,6 +14,7 @@ const loader = document.querySelector('.loader');
 
 loader.textContent = '';
 error.textContent = '';
+
 offSelect();
 createBreeds();
 
@@ -45,6 +46,7 @@ function selectBreed() {
       afterChange: newVal => {
         offContent();
         onLoader();
+
         fetchCatByBreed(newVal[0].value)
           .then(response => {
             addContent(response);
@@ -80,30 +82,32 @@ function addContent(response) {
     onContent();
   });
 }
+
 function offLoader() {
   loader.style.display = 'none';
-}
-function onLoader() {
-  loader.style.display = 'inline-block';
 }
 function offContent() {
   catInfo.style.display = 'none';
 }
+function offSelect() {
+  breedSelect.style.display = 'none';
+}
+
+function onLoader() {
+  loader.style.display = 'inline-block';
+}
 function onContent() {
   catInfo.style.display = 'flex';
+}
+function onSelect() {
+  breedSelect.style.display = 'flex';
 }
 function onError() {
   Notiflix.Notify.failure(
     'Oops! Something went wrong! Try reloading the page!',
     {
       position: 'center-center',
-      timeout: 20000,
+      timeout: 5000,
     }
   );
-}
-function offSelect() {
-  breedSelect.style.display = 'none';
-}
-function onSelect() {
-  breedSelect.style.display = 'flex';
 }
