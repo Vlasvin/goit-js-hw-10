@@ -52,7 +52,6 @@ function selectBreed() {
             addContent(response);
           })
           .catch(response => {
-            offSelect();
             offLoader();
             onError();
           });
