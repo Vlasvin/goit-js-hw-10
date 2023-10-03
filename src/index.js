@@ -15,7 +15,7 @@ const loader = document.querySelector('.loader');
 loader.textContent = '';
 error.textContent = '';
 
-offSelect();
+toggleSelect(false);
 createBreeds();
 
 function createBreeds() {
@@ -25,17 +25,17 @@ function createBreeds() {
         text: item.name,
         value: item.id,
       }));
-      onSelect();
+      toggleSelect(true);
       const select = new SlimSelect({
         select: '.breed-select',
         data: selectData,
       });
       selectBreed();
-      offLoader();
+      toggleLoader(false);
     })
     .catch(data => {
-      offLoader();
-      onError();
+      toggleLoader(false);
+      showErrorNotification();
     });
 }
 
@@ -44,16 +44,16 @@ function selectBreed() {
     select: '.breed-select',
     events: {
       afterChange: newVal => {
-        offContent();
-        onLoader();
+        toggleContent(false);
+        toggleLoader(true);
 
         fetchCatByBreed(newVal[0].value)
           .then(response => {
             addContent(response);
           })
           .catch(response => {
-            offLoader();
-            onError();
+            toggleLoader(false);
+            showErrorNotification();
           });
       },
     },
@@ -77,31 +77,28 @@ function addContent(response) {
     catInfo.style.cssText = 'display: flex; gap:40px';
     catInfo.querySelector('div').classList.add('content-text');
     catInfo.querySelector('img').style.cssText = 'width: 700px; height: 600px;';
-    offLoader();
-    onContent();
+    toggleLoader(false);
+    toggleContent(true);
   });
 }
 
-function offLoader() {
-  loader.style.display = 'none';
-}
-function offContent() {
-  catInfo.style.display = 'none';
-}
-function offSelect() {
-  breedSelect.style.display = 'none';
+function toggleElementDisplay(element, displayValue) {
+  element.style.display = displayValue;
 }
 
-function onLoader() {
-  loader.style.display = 'inline-block';
+function toggleLoader(showLoader) {
+  toggleElementDisplay(loader, showLoader ? 'inline-block' : 'none');
 }
-function onContent() {
-  catInfo.style.display = 'flex';
+
+function toggleContent(showContent) {
+  toggleElementDisplay(catInfo, showContent ? 'flex' : 'none');
 }
-function onSelect() {
-  breedSelect.style.display = 'flex';
+
+function toggleSelect(showSelect) {
+  toggleElementDisplay(breedSelect, showSelect ? 'flex' : 'none');
 }
-function onError() {
+
+function showErrorNotification() {
   Notiflix.Notify.failure(
     'Oops! Something went wrong! Try reloading the page!',
     {
@@ -110,3 +107,31 @@ function onError() {
     }
   );
 }
+// function offLoader() {
+//   loader.style.display = 'none';
+// }
+// function offContent() {
+//   catInfo.style.display = 'none';
+// }
+// function offSelect() {
+//   breedSelect.style.display = 'none';
+// }
+
+// function onLoader() {
+//   loader.style.display = 'inline-block';
+// }
+// function onContent() {
+//   catInfo.style.display = 'flex';
+// }
+// function onSelect() {
+//   breedSelect.style.display = 'flex';
+// }
+// function onError() {
+//   Notiflix.Notify.failure(
+//     'Oops! Something went wrong! Try reloading the page!',
+//     {
+//       position: 'center-center',
+//       timeout: 5000,
+//     }
+//   );
+// }
