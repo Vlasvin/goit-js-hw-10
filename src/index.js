@@ -107,31 +107,3 @@ function showErrorNotification() {
     }
   );
 }
-// function offLoader() {
-//   loader.style.display = 'none';
-// }
-// function offContent() {
-//   catInfo.style.display = 'none';
-// }
-// function offSelect() {
-//   breedSelect.style.display = 'none';
-// }
-
-// function onLoader() {
-//   loader.style.display = 'inline-block';
-// }
-// function onContent() {
-//   catInfo.style.display = 'flex';
-// }
-// function onSelect() {
-//   breedSelect.style.display = 'flex';
-// }
-// function onError() {
-//   Notiflix.Notify.failure(
-//     'Oops! Something went wrong! Try reloading the page!',
-//     {
-//       position: 'center-center',
-//       timeout: 5000,
-//     }
-//   );
-// }

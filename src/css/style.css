@@ -3,7 +3,7 @@
   height: 48px;
   border-width: 3px;
   border-style: dashed solid solid dotted;
-  border-color: #ff3d00 #ff3d00 transparent #ff3d00;
+  border-color: #009dff #009dff transparent #009dff;
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -17,7 +17,7 @@
   left: 20px;
   top: 31px;
   border: 10px solid transparent;
-  border-right-color: #ff3d00;
+  border-right-color: #009dff;
   transform: rotate(-40deg);
 }
 
