@@ -49,7 +49,12 @@ function selectBreed() {
 
         fetchCatByBreed(newVal[0].value)
           .then(response => {
-            addContent(response);
+            if (response[0] !== undefined) {
+              console.log(response[0]);
+              addContent(response);
+            } else {
+              throw new Error();
+            }
           })
           .catch(response => {
             toggleLoader(false);
