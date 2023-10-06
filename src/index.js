@@ -1,8 +1,7 @@
 import SlimSelect from 'slim-select';
 import axios from 'axios';
 import Notiflix from 'notiflix';
-import { fetchBreeds } from './cat-api';
-import { fetchCatByBreed } from './cat-api';
+import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 axios.defaults.headers.common['x-api-key'] =
   'live_icm1GCVwjCYsiZDr2jieZaw0CYZp62lKBeAX40dJr4XgKQxo0FhDnwQaWbzMWYpI';
@@ -50,7 +49,6 @@ function selectBreed() {
         fetchCatByBreed(newVal[0].value)
           .then(response => {
             if (response[0] !== undefined) {
-              console.log(response[0]);
               addContent(response);
             } else {
               throw new Error();
